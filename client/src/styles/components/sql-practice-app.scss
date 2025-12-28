@@ -1,0 +1,368 @@
+// Variables
+$primary-color: #2563eb;
+$primary-hover: #1d4ed8;
+
+$beginner-color: #10b981;
+$beginner-bg: #d1fae5;
+$intermediate-color: #3b82f6;
+$intermediate-bg: #dbeafe;
+$advanced-color: #a855f7;
+$advanced-bg: #f3e8ff;
+
+$sql-basics-bg: #ecfeff;
+$sql-basics-border: #a5f3fc;
+$joins-bg: #eef2ff;
+$joins-border: #c7d2fe;
+$subqueries-bg: #f5f3ff;
+$subqueries-border: #ddd6fe;
+$advanced-sql-bg: #fdf4ff;
+$advanced-sql-border: #f0abfc;
+
+$text-primary: #1f2937;
+$text-secondary: #6b7280;
+$text-light: #9ca3af;
+
+$border-color: #e5e7eb;
+$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+$shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+$shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+
+// Mobile-first base styles
+.practice-app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eff6ff 0%, #ede9fe 50%, #fae8ff 100%);
+  padding: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  &__container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    color: $text-secondary;
+  }
+
+  &__search {
+    margin-bottom: 2rem;
+  }
+
+  &__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+  }
+
+  &__stats {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: $text-secondary;
+  }
+
+  &__count {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary-color;
+  }
+
+  &__loading {
+    text-align: center;
+    padding: 3rem 0;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 3rem 0;
+    color: $text-light;
+    font-size: 1.125rem;
+  }
+}
+
+// Search bar
+.search-bar {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+
+  &__icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.25rem;
+    height: 1.25rem;
+    color: $text-light;
+    pointer-events: none;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 2px solid $border-color;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    color: $text-primary;
+    background: white;
+    box-shadow: $shadow-sm;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: $shadow-md;
+    }
+
+    &::placeholder {
+      color: $text-light;
+    }
+  }
+}
+
+// Filter buttons
+.filter-button {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: 2px solid $border-color;
+  background: white;
+  color: $text-primary;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f9fafb;
+  }
+
+  &--active {
+    background: $primary-color;
+    color: white;
+    border-color: $primary-color;
+    box-shadow: $shadow-md;
+
+    &:hover {
+      background: $primary-hover;
+    }
+  }
+}
+
+// Spinner
+.spinner {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  border: 4px solid $border-color;
+  border-top-color: $primary-color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Assignments grid - Mobile first
+.assignments-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  // Tablet
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  // Desktop
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+// Assignment card
+.assignment-card {
+  background: white;
+  border: 2px solid $border-color;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-4px);
+  }
+
+  &--sql-basics {
+    background: $sql-basics-bg;
+    border-color: $sql-basics-border;
+  }
+
+  &--joins {
+    background: $joins-bg;
+    border-color: $joins-border;
+  }
+
+  &--subqueries {
+    background: $subqueries-bg;
+    border-color: $subqueries-border;
+  }
+
+  &--advanced-sql {
+    background: $advanced-sql-bg;
+    border-color: $advanced-sql-border;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  &__difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    &--beginner {
+      background: $beginner-bg;
+      color: $beginner-color;
+    }
+
+    &--intermediate {
+      background: $intermediate-bg;
+      color: $intermediate-color;
+    }
+
+    &--advanced {
+      background: $advanced-bg;
+      color: $advanced-color;
+    }
+  }
+
+  &__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: $text-light;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 1rem;
+    min-height: 3rem;
+    line-height: 1.4;
+  }
+
+  &__category {
+    margin-bottom: 1rem;
+  }
+
+  &__category-badge {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    background: white;
+    border: 1px solid $border-color;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $text-secondary;
+  }
+
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: $text-secondary;
+  }
+
+  &__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  &__meta-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &__button {
+    width: 100%;
+    padding: 0.875rem;
+    background: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: auto;
+
+    &:hover {
+      background: $primary-hover;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+// Larger screens adjustments
+@media (min-width: 768px) {
+  .practice-app {
+    padding: 2rem;
+
+    &__header {
+      margin-bottom: 3rem;
+    }
+
+    &__title {
+      font-size: 2.5rem;
+    }
+
+    &__subtitle {
+      font-size: 1.125rem;
+    }
+
+    &__search {
+      margin-bottom: 2.5rem;
+    }
+
+    &__filters {
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  .filter-button {
+    padding: 0.625rem 1.5rem;
+    font-size: 1rem;
+  }
+}

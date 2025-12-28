@@ -1,0 +1,512 @@
+.sql-editor-container {
+  padding: 1rem;
+  max-width: 100%;
+  margin: 0 auto;
+
+  /* ---------------- Button Group ---------------- */
+  .button-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1rem;
+      border: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: white;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      &:disabled {
+        background: #cbd5e0;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      &.btn-run {
+        background: #48bb78;
+
+        &:hover:not(:disabled) {
+          background: #38a169;
+        }
+      }
+
+      &.btn-clear {
+        background: #f56565;
+
+        &:hover:not(:disabled) {
+          background: #e53e3e;
+        }
+      }
+    }
+  }
+
+  /* ---------------- Main Layout (Mobile First) ---------------- */
+  .main-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  /* ---------------- Left Sidebar (Hidden on Mobile) ---------------- */
+  .left-sidebar {
+    display: none;
+  }
+
+  /* ---------------- Right Content ---------------- */
+  .right-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  /* ---------------- Question Brief ---------------- */
+  .question-banner {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+
+    &.mobile-only {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .question-info {
+      width: 100%;
+      box-sizing: border-box;
+
+      h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #25265e;
+      }
+
+      p {
+        margin: 0.25rem 0;
+        font-size: 0.875rem;
+        color: #2c5282;
+
+        .label {
+          font-weight: 600;
+        }
+      }
+
+      .difficulty {
+        margin-bottom: 0.5rem;
+      }
+
+      .task {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  /* ---------------- Schema Panel ---------------- */
+  .schema-panel {
+    width: 100%;
+    box-sizing: border-box;
+    background: #ffffff;
+    padding: 1rem;
+    overflow-x: auto;
+
+    .schema-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #4a5568;
+      margin-bottom: 1rem;
+    }
+
+    .loading-message,
+    .error-message {
+      font-size: 0.875rem;
+      color: #718096;
+    }
+
+    .table-section {
+      border: 1px solid #e2e8f0;
+      margin-bottom: 1rem;
+      overflow: hidden;
+
+      .table-name {
+        background: #f7fafc;
+        padding: 0.75rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: #2d3748;
+      }
+
+      .table-data {
+        padding: 0.75rem;
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 0.75rem;
+
+          thead {
+            background: #f7fafc;
+
+            th {
+              padding: 0.5rem;
+              text-align: left;
+              font-weight: 600;
+              border: 1px solid #e2e8f0;
+              color: #4a5568;
+
+              .pk-badge {
+                margin-left: 0.25rem;
+                color: #3182ce;
+                font-weight: 700;
+                font-size: 0.65rem;
+              }
+            }
+          }
+
+          tbody {
+            tr:hover {
+              background: #f7fafc;
+            }
+
+            td {
+              padding: 0.5rem;
+              border: 1px solid #e2e8f0;
+              color: #718096;
+            }
+          }
+        }
+
+        .row-count {
+          font-size: 0.75rem;
+          color: #718096;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+
+  /* ---------------- Expected Output ---------------- */
+  .expected-output {
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+
+    h4 {
+      margin: 0 0 0.75rem 0;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #1a365d;
+    }
+
+    .expected-table-wrapper {
+      overflow-x: auto;
+    }
+
+    .expected-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.75rem;
+      background: #ffffff;
+
+      thead {
+        background: #bee3f8;
+
+        th {
+          padding: 0.5rem;
+          text-align: left;
+          font-weight: 700;
+          color: #1a365d;
+          border: 1px solid #90cdf4;
+        }
+      }
+
+      tbody {
+        tr:hover {
+          background: #ebf8ff;
+        }
+
+        td {
+          padding: 0.5rem;
+          border: 1px solid #90cdf4;
+          color: #2c5282;
+        }
+      }
+    }
+  }
+
+  /* ---------------- Combined Info Panel (Mobile Only) ---------------- */
+  .combined-info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 1rem;
+  }
+
+  /* ---------------- Content Wrapper ---------------- */
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+
+    .editor-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+
+      .editor-container {
+        background: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+        overflow: hidden;
+        position: relative;
+        height: 400px;
+
+        .loading-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: #f7fafc;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #718096;
+          font-size: 0.875rem;
+          z-index: 10;
+        }
+
+        .editor-wrapper {
+          height: 400px;
+          width: 100%;
+        }
+      }
+
+      .output-panel {
+        background: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+        padding: 1rem;
+        max-height: 300px;
+        overflow-y: auto;
+
+        .output-label {
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: #4a5568;
+          margin-bottom: 0.75rem;
+        }
+
+        .success-message,
+        .error-message,
+        .result-info,
+        .loading-message {
+          font-size: 0.875rem;
+          padding: 0.75rem;
+        }
+
+        .success-message {
+          color: #2f855a;
+          background: #f0fff4;
+          border: 1px solid #9ae6b4;
+        }
+
+        .error-message {
+          color: #c53030;
+          background: #fff5f5;
+          border: 1px solid #fc8181;
+        }
+
+        .result-info {
+          color: #4a5568;
+          margin-top: 0.5rem;
+        }
+
+        .loading-message {
+          color: #4299e1;
+        }
+
+        .result-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 0.5rem;
+          font-size: 0.875rem;
+
+          thead {
+            background: #f7fafc;
+
+            tr th {
+              padding: 0.75rem;
+              text-align: left;
+              font-weight: 600;
+              color: #2d3748;
+              border: 1px solid #e2e8f0;
+            }
+          }
+
+          tbody {
+            tr {
+              &:hover {
+                background: #f7fafc;
+              }
+
+              td {
+                padding: 0.75rem;
+                border: 1px solid #e2e8f0;
+                color: #4a5568;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* ============================================ */
+  /* RESPONSIVE DESIGN - LAPTOP VIEW (1024px+)   */
+  /* ============================================ */
+  @media (min-width: 1024px) {
+    .main-layout {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .mobile-only {
+      display: none !important;
+    }
+
+    .left-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: sticky;
+      top: 1rem;
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+    }
+
+    .right-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .editor-section {
+        .editor-container {
+          height: 500px;
+
+          .editor-wrapper {
+            height: 500px;
+          }
+        }
+      }
+    }
+
+    .combined-info-panel {
+      display: none;
+    }
+
+    .question-banner,
+    .schema-panel,
+    .expected-output {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 1rem;
+    }
+
+    .schema-panel {
+      max-height: none;
+    }
+
+    .question-banner {
+      margin-bottom: 0;
+    }
+  }
+
+  /* ============================================ */
+  /* TABLET AND MOBILE ADJUSTMENTS               */
+  /* ============================================ */
+  @media (max-width: 1023px) {
+    .left-sidebar {
+      display: none;
+    }
+
+    .combined-info-panel {
+      display: flex;
+    }
+
+    .content-wrapper {
+      .editor-section {
+        .editor-container {
+          height: 300px;
+
+          .editor-wrapper {
+            height: 300px;
+          }
+        }
+      }
+
+      .schema-panel {
+        max-height: 400px;
+      }
+    }
+
+    .question-banner {
+      margin-bottom: 0;
+
+      &.mobile-only {
+        display: block !important;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+
+    .button-group {
+      flex-wrap: wrap;
+
+      button {
+        flex: 1;
+        min-width: 120px;
+        justify-content: center;
+      }
+    }
+
+    .editor-section {
+      .editor-container {
+        height: 250px;
+
+        .editor-wrapper {
+          height: 250px;
+        }
+      }
+    }
+  }
+}
